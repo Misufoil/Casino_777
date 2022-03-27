@@ -12,22 +12,53 @@ void rules () {
     system("pause");
 }
 
+/*int InputErrorInt() {
+    int number;
+    while (!(cin >> number) || (cin.peek() != '\n')) {
+        cin.clear();
+        while (cin.get() != '\n');
+        cout << "Input error! Retry input: ";
+    }
+    return number;
+}
+int InputErrorBool() {
+    bool number;
+    while (!(cin >> number) || (cin.peek() != '\n')) {
+        cin.clear();
+        while (cin.get() != '\n');
+        cout << "Input error! Retry input: ";
+    }
+    return number;
+}*/
+
+template<typename T>
+T InputError(T number) {
+    while (!(cin >> number) || (cin.peek() != '\n')) {
+        cin.clear();
+        while (cin.get() != '\n');
+        cout << "Input error! Retry input: ";
+    }
+    return number;
+}
+
 int Amount() {
-    int amount;
+    int amount = 0;
     cout << "\nAmount: ";
-    cin >> amount;
+    amount = InputError(amount);
     return amount;
 }
 
 int slots(int balance, string name) {
-    int bet;
-    bool choice;
+    int bet = 0;
+    bool choice = 0;
 
     do {
         if (balance == 0) {
             cout << "Your balance: " << balance << endl;
             cout << "Enter (1) - replenish the balance OR Enter (0) - finish playing: ";
-            cin >> choice;
+
+            choice = InputError(choice);
+
             if (choice) {
                 balance += Amount();
             }
@@ -35,7 +66,7 @@ int slots(int balance, string name) {
         else {
             system("cls");
             cout << name << ", enter bet amount: ";
-            cin >> bet;
+            bet = InputError(bet);
     
             if (bet > balance) {
                 cout << "Your bet is more than the balance!" << endl;
@@ -77,7 +108,8 @@ int slots(int balance, string name) {
             }
 
             cout << "Enter (1) - spin slots OR Enter (0) - If you want to return to the main menu: ";
-            cin >> choice;
+            
+            choice = InputError(choice);
         }
     } while (choice);
 
@@ -88,8 +120,8 @@ int slots(int balance, string name) {
 int main() {
     string name;
     int balance;
-    bool choice = 1;
-    int option;
+    bool choice = 0;
+    int option = 0;
     srand(time(NULL));
     
 
@@ -101,8 +133,9 @@ int main() {
 
     cout << "Enter your name: ";
     cin >> name;
-    cout << "Enter the starting balance: ";
-    cin >> balance;
+    cout << "Enter the starting balance.";
+    
+    balance = Amount();
 
     cout << endl;
     rules();
@@ -118,7 +151,9 @@ int main() {
             cout << "Enter (0) - finish playing.\n";
             cout << "Your choice: ";
 
-            cin >> option;
+            option = InputError(option);
+
+            cout << endl;
 
             switch (option) {
                 case 0: {
