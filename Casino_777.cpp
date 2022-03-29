@@ -154,6 +154,7 @@ int main() {
 
     cout << "\n\t\t\tThank you for using the services of the CASINO 777.\n";
     cout << "\t\t\t\t\t\t Good luck!!!\n";
+    system("pause");
         
     return 0;
 }
