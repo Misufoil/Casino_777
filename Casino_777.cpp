@@ -29,7 +29,7 @@ int Amount() {
     return amount;
 }
 
-int slots(int balance, string name) {
+void slots(int &balance, string name) {
     int bet = 0;
     bool choice = 1;
     int spin = 0;
@@ -97,8 +97,6 @@ int slots(int balance, string name) {
             choice = InputError(choice);
         }
     } while (choice);
-
-    return balance;
 }
 
 int main() {
@@ -139,7 +137,7 @@ int main() {
                     break;
                 }
                 case 1: { 
-                    balance = slots(balance, name);
+                    slots(balance, name);
                     option = 0;
                     break;
                 }
